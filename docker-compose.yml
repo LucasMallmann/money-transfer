@@ -1,0 +1,23 @@
+version: '3.5'
+services:
+  db:
+    image: postgres
+    restart: always
+    hostname: db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./initdb.sql:/docker-entrypoint-initdb.d/initdb.sql
+    environment:
+      POSTGRES_PASSWORD: pass
+      POSTGRES_USER: user
+      POSTGRES_DB: money
+    ports:
+      - "5432:5432"
+    expose:
+      - "5432"
+    healthcheck:
+        test: ["CMD-SHELL", "pg_isready -U user -d money"]
+        interval: 15s
+        timeout: 25s
+volumes:
+  postgres_data:
