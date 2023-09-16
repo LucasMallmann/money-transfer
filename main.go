@@ -1,11 +1,13 @@
 package main
 
 import (
-	"github.com/lucasmallmann/money-transfer/app"
+	"log"
+
+	"github.com/lucasmallmann/money-transfer/api"
 )
 
 func main() {
-	app := app.NewApp("money transfer")
-	app.Setup()
-	app.Serve(":3333")
+	server := api.NewServer(":3333")
+	server.Setup()
+	log.Fatal(server.Serve())
 }
