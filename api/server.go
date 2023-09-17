@@ -2,19 +2,25 @@ package api
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"github.com/lucasmallmann/money-transfer/routes"
+	"github.com/lucasmallmann/money-transfer/storage"
 )
 
 type Server struct {
 	listenAddr string
 	Client     *fiber.App
+	storage    storage.UserStorage
 }
 
-func NewServer(listenAddr string) *Server {
+func NewServer(listenAddr string, storage storage.UserStorage) *Server {
 	app := fiber.New(fiber.Config{
 		AppName: "money-transfer",
 	})
-	return &Server{listenAddr: listenAddr, Client: app}
+
+	return &Server{
+		listenAddr: listenAddr,
+		Client:     app,
+		storage:    storage,
+	}
 }
 
 func (s *Server) Serve() error {
@@ -22,5 +28,5 @@ func (s *Server) Serve() error {
 }
 
 func (s *Server) Setup() {
-	routes.SetupRoutes(s.Client)
+	SetupRoutes(s.Client, s.storage)
 }

@@ -1,11 +1,24 @@
 package api
 
-import "github.com/lucasmallmann/money-transfer/storage"
+import (
+	"github.com/gofiber/fiber/v2"
+	"github.com/lucasmallmann/money-transfer/storage"
+)
 
-type UserStorage struct {
+type UserHandler struct {
 	storage storage.UserStorage
 }
 
-func NewUserStorage(storage storage.UserStorage) *UserStorage {
-	return &UserStorage{storage: storage}
+func NewUserHandler(storage storage.UserStorage) *UserHandler {
+	return &UserHandler{
+		storage: storage,
+	}
+}
+
+func (h *UserHandler) Index(ctx *fiber.Ctx) error {
+	user, err := h.storage.GetById("1")
+	if err != nil {
+		return ctx.SendStatus(500)
+	}
+	return ctx.Status(200).JSON(user)
 }
