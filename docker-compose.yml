@@ -5,7 +5,7 @@ services:
     restart: always
     hostname: db
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - ./docker/db:/var/lib/postgresql/data
       - ./initdb.sql:/docker-entrypoint-initdb.d/initdb.sql
     environment:
       POSTGRES_PASSWORD: pass

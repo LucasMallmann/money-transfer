@@ -2,11 +2,14 @@ module github.com/lucasmallmann/money-transfer
 
 go 1.20
 
+require github.com/lib/pq v1.10.9
+
 require (
 	github.com/andybalholm/brotli v1.0.5 // indirect
 	github.com/gofiber/fiber/v2 v2.49.1 // indirect
 	github.com/google/uuid v1.3.1 // indirect
 	github.com/jmoiron/sqlx v1.3.5 // indirect
+	github.com/joho/godotenv v1.5.1 // indirect
 	github.com/klauspost/compress v1.16.7 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.19 // indirect

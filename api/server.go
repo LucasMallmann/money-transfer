@@ -8,10 +8,10 @@ import (
 type Server struct {
 	listenAddr string
 	Client     *fiber.App
-	storage    storage.UserStorage
+	storage    storage.Storage
 }
 
-func NewServer(listenAddr string, storage storage.UserStorage) *Server {
+func NewServer(listenAddr string, storage storage.Storage) *Server {
 	app := fiber.New(fiber.Config{
 		AppName: "money-transfer",
 	})

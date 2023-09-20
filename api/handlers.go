@@ -6,10 +6,10 @@ import (
 )
 
 type UserHandler struct {
-	storage storage.UserStorage
+	storage storage.Storage
 }
 
-func NewUserHandler(storage storage.UserStorage) *UserHandler {
+func NewUserHandler(storage storage.Storage) *UserHandler {
 	return &UserHandler{
 		storage: storage,
 	}
